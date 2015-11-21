@@ -8,9 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.revmob.RevMob;
+import com.revmob.RevMobTestingMode;
+import com.revmob.ads.banner.RevMobBanner;
 
 import my.dolphinapps.greendao.model.DaoSession;
 import my.dolphinapps.greendao.model.Favorite;
@@ -22,6 +27,7 @@ public class Favorites extends Activity {
     String TAG = " Favorites  ";
     List favoritesList;
     List myfavoriteList;
+    RevMob revmob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,13 @@ public class Favorites extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_favorites);
+
+        revmob = RevMob.start(this);
+
+        if(AddConfig.DEBUG)
+        {
+            revmob.setTestingMode(RevMobTestingMode.WITH_ADS);
+        }
 
         DaoSession daoSession = ((FavoriteApplication) getApplicationContext()).getDaoSession();
         FavoriteDao favoriteDao = daoSession.getFavoriteDao();

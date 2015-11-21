@@ -10,6 +10,9 @@ import android.view.Window;
 import android.widget.TextView;
 
 
+import com.revmob.RevMob;
+import com.revmob.RevMobTestingMode;
+
 import my.dolphinapps.greendao.model.Favorite;
 
 
@@ -77,6 +80,7 @@ public class MainActivityListAdapter extends RecyclerView.Adapter<MainActivityLi
         public TextView textViewPersonName;
         public View viewParent;
         String shareMyFavSlang;
+        RevMob revmob;
 
         @Override
         public void onClick(View v) {
@@ -84,6 +88,16 @@ public class MainActivityListAdapter extends RecyclerView.Adapter<MainActivityLi
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.slangs_popup);
             dialog.show();
+
+            // Starting RevMob session
+            revmob = RevMob.start(mainActivity);
+            AddConfig.counter(mainActivity, revmob);
+
+            if(AddConfig.DEBUG)
+            {
+                revmob.setTestingMode(RevMobTestingMode.WITH_ADS);
+            }
+
             final TextView shareSlang = (TextView) dialog
                     .findViewById(R.id.share);
             TextView shareAll = (TextView) dialog

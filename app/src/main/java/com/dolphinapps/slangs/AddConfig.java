@@ -9,10 +9,10 @@ import com.revmob.RevMob;
  * Created by WeaveBytes on 11/20/2015.
  */
 public class AddConfig {
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
-    public static int click_counter=0;
-    public static int MAX_CLICK_LIMIT=10;
+    public static int click_counter = 0;
+    public static int MAX_CLICK_LIMIT = 20;
 
     public static  void counter(Activity activity,RevMob revMob){
         AddConfig.click_counter++;

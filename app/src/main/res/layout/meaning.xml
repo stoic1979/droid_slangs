@@ -1,107 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:background="#ff9999"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="5">
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
         android:layout_alignParentTop="true"
-        android:layout_gravity="center"
+        android:layout_weight=".7"
         android:background="#d8033d"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/textview2"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
+            android:layout_weight=".9"
             android:gravity="center"
             android:text="title"
             android:textColor="#FFFFFF"
             android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/menu"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight=".1"
             android:background="@drawable/menu"
             />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/btnfav"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="end"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/nobook"
-        android:layout_marginTop="20dp"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/btnfav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/nobook"
+
+            />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textview1"
-        android:layout_width="296dp"
-        android:layout_height="166dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="350dp"
+        android:layout_height="0dp"
+        android:layout_weight="2.3"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         android:textStyle="normal" />
 
-    <RelativeLayout
-        android:id="@+id/rel1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/buttonslayout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight=".5"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <Button
+            android:id="@+id/btnprev"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:weightSum="6">
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/corners"
+            android:text="@string/prev"
+            android:textColor="#FFFFFF"></Button>
 
-            <Button
-                android:id="@+id/btnprev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_weight="2"
-                android:background="@drawable/corners"
-                android:text="@string/prev"
-                android:textColor="#FFFFFF"></Button>
-
-            <Button
-                android:id="@+id/btnshare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_weight="2"
-                android:background="@drawable/corners"
-                android:text="@string/share"
-                android:textColor="#FFFFFF" />
+        <Button
+            android:id="@+id/btnshare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/corners"
+            android:text="@string/share"
+            android:textColor="#FFFFFF" />
 
 
-            <Button
-                android:id="@+id/btnnext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="2"
-                android:background="@drawable/corners"
-                android:text="@string/next"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-    </RelativeLayout>
+        <Button
+            android:id="@+id/btnnext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/corners"
+            android:text="@string/next"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+    <!--  </RelativeLayout>-->
+    ++++++++++++++++++revmob begin++++++++++++++++++
+
+
+    <LinearLayout
+        android:id="@+id/banner"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    ++++++++++++++++++revmob end++++++
+
 
 </LinearLayout>

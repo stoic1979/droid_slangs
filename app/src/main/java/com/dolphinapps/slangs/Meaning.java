@@ -7,12 +7,17 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.revmob.RevMob;
+import com.revmob.RevMobTestingMode;
+import com.revmob.ads.banner.RevMobBanner;
 
 import my.dolphinapps.greendao.model.DaoSession;
 import my.dolphinapps.greendao.model.Favorite;
@@ -30,6 +35,7 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 	Dialog dialog;
 	String TAG = " Meaning ";
     List myfavoriteList;
+	RevMob revmob;
 	private SimpleGestureFilter detector;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,19 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.meaning);
+
+
+		// Starting RevMob session
+		revmob = RevMob.start(this);
+
+		if(AddConfig.DEBUG)
+		{
+			revmob.setTestingMode(RevMobTestingMode.WITH_ADS);
+		}
+
+		RevMobBanner banner = revmob.createBanner(this);
+		ViewGroup view = (ViewGroup) findViewById(R.id.banner);
+		view.addView(banner);
 
 
 		detector  = new SimpleGestureFilter(this, this);
@@ -154,6 +173,8 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 			public void onClick(View arg0) {
 
 				// TODO Auto-generated method stub
+				AddConfig.counter(Meaning.this, revmob);
+				Log.d(" Main Activity "," Main Activity "+AddConfig.click_counter);
 				prev();
                 changeStar();
 
@@ -165,7 +186,8 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-
+				AddConfig.counter(Meaning.this, revmob);
+				Log.d(" Main Activity "," Main Activity "+AddConfig.click_counter);
                 next();
                 changeStar();
 
@@ -200,7 +222,6 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 
 		position1 = it.getIntExtra("posi", 0);
 		Log.e("array" + position1, "array");
-		// int position2=it.getIntExtra("position",0);
 		switch (position1) {
 		case 0:
 			meaning.setText(Config.a1[position]);
@@ -975,8 +996,10 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 	   TextView rateus = (TextView) dialog
 			   .findViewById(R.id.rateus);
 
-	   TextView about = (TextView) dialog
-			   .findViewById(R.id.about);
+	  /* TextView about = (TextView) dialog
+			   .findViewById(R.id.about);*/
+	   TextView suggest = (TextView) dialog
+			   .findViewById(R.id.suggest);
 
 	   fav.setOnClickListener(new OnClickListener() {
 		   @Override
@@ -993,18 +1016,27 @@ public class Meaning extends Activity implements SimpleGestureFilter.SimpleGestu
 		   @Override
 		   public void onClick(View view) {
 			   dialog.dismiss();
+			   AppRater.showRateDialog(Meaning.this, null) ;
 
 		   }
 	   });
 
-	   about.setOnClickListener(new OnClickListener() {
+	   /*about.setOnClickListener(new OnClickListener() {
            @Override
            public void onClick(View view) {
                dialog.dismiss();
 
            }
-       });
+       });*/
 
+	   suggest.setOnClickListener(new OnClickListener() {
+		   @Override
+		   public void onClick(View view) {
+			   dialog.dismiss();
+			   Intent sintent = new Intent(Meaning.this,Suggestion.class);
+			   startActivity(sintent);
+		   }
+	   });
 
    }
 

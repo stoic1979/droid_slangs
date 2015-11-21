@@ -3,7 +3,9 @@ package com.dolphinapps.slangs;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -11,11 +13,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.revmob.RevMob;
+import com.revmob.RevMobTestingMode;
+import com.revmob.ads.banner.RevMobBanner;
+
 public class Description extends Activity implements OnItemClickListener {
 
 	private ListView lv1;
 	private String[] aslang;
-
+	RevMob revmob;
 	int position;
 
 	@Override
@@ -26,6 +32,26 @@ public class Description extends Activity implements OnItemClickListener {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.description);
+
+		// Starting RevMob session
+		revmob = RevMob.start(this);
+
+		if(AddConfig.DEBUG)
+		{
+		}
+
+		//###### uncomment this while testing in emulator
+		if(AddConfig.DEBUG)
+		{
+			revmob.setTestingMode(RevMobTestingMode.WITH_ADS);
+		}
+
+		RevMobBanner banner = revmob.createBanner(this);
+		ViewGroup view = (ViewGroup) findViewById(R.id.banner);
+		view.addView(banner);
+
+
+
 		lv1 = (ListView) findViewById(R.id.listView);
 
 		Intent it = getIntent();
@@ -243,6 +269,10 @@ public class Description extends Activity implements OnItemClickListener {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
+
+				AddConfig.counter(Description.this, revmob);
+				Log.d(" Main Activity ", " Main Activity " + AddConfig.click_counter);
+
 				Intent it = new Intent(Description.this, Meaning.class);
 				it.putExtra("pos", arg2);
 				it.putExtra("posi", position);

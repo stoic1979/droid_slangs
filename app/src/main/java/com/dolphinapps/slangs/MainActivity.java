@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.revmob.RevMob;
 import com.revmob.RevMobTestingMode;
@@ -40,7 +39,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		if(AddConfig.DEBUG)
 		{
-			Toast.makeText(getApplicationContext(), "Warning::debugging", Toast.LENGTH_LONG).show();
 		}
 
 		//###### uncomment this while testing in emulator

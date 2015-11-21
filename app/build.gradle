@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21"
 
     defaultConfig {
-        applicationId "dolphinapps.com.slangs"
+        applicationId "com.dolphinapps.slangs"
         minSdkVersion 19
         targetSdkVersion 21
         versionCode 1
